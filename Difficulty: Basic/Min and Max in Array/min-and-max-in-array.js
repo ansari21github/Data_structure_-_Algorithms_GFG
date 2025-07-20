@@ -11,19 +11,48 @@ class Solution {
     getMinMax(arr) {
         // code here
         let n = arr.length;
+        
+        if(n===0)return null;
         if(n<2) return [arr[0],arr[0]];
         
-        let min = arr[0];
-        let max = arr[0];
+        let min , max;
+        let i;
         
-        for (let i=0; i<n; i++){
-            if(arr[i]<min){
-                min = arr[i];
-            }else if(arr[i]>max){
-                max = arr[i];
+        
+        if(n%2 === 0){
+            if(arr[0] < arr[1]){
+                min = arr[0];
+                max = arr[1];
+            }else{
+                max = arr[0];
+                min = arr[1];
             }
+            
+            i = 2;
+        }else{
+            min = arr[0];
+            max = arr[0];
+            
+            i = 1;
         }
         
-        return [min , max];
+        while(i < n-1){
+            let localMin , localMax;
+            
+            if(arr[i] < arr[i+1]){
+                localMin = arr[i];
+                localMax = arr[i+1];
+            }else{
+                localMin = arr[i+1];
+                localMax = arr[i];
+            }
+            
+            min = Math.min(min,localMin)
+            max = Math.max(max,localMax)
+            
+            i += 2;
+        }
+        
+        return [min,max];
     }
 }
