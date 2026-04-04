@@ -5,46 +5,50 @@
  */
 class Solution {
     findUnion(a, b) {
-        // code here
-        let result = [];
+        // brutforce 
         
+        // optimal solution
+        
+        let arr = [];
+        let lengthA = a.length;
+        let lengthB = b.length;
         let i = 0;
         let j = 0;
         
-        while(i < a.length && j < b.length){
-          if(a[i] < b[j]){
-              if(result.length === 0 || result[result.length-1] !== a[i]){
-                  result.push(a[i]);
-              }
-              i++;
-          }else if(a[i] > b[j]){
-              if(result.length === 0 || result[result.length-1] !== b[j]){
-                  result.push(b[j]);
-              }
-              j++;
-          }else{
-              if(result.length === 0 || result[result.length-1] !== a[i]){
-                  result.push(a[i]);
-              }
-              i++;
-              j++;
-          }
-          
+        
+        while(i < lengthA && j < lengthB){
+            if(a[i] <= b[j]){
+                if(arr.length == 0 || arr[arr.length-1] !== a[i]){
+                    arr.push(a[i]);
+                }
+                i++;
+            }else{
+                 if(arr.length == 0 || arr[arr.length-1] !== b[j]){
+                    arr.push(b[j]);
+                }
+                j++;
+            }
         }
-          while(i<a.length){
-                if(result.length === 0 || result[result.length-1] !== a[i]){
-                  result.push(a[i]);
-              }
-              i++;
-          }
-          
-           while(j<b.length){
-                if(result.length === 0 || result[result.length-1] !== b[j]){
-                  result.push(b[j]);
-              }
-              j++;
-          }
-          
-          return result;
+        
+        while(i<lengthA){
+            
+                if(arr.length == 0 || arr[arr.length-1] !== a[i]){
+                    arr.push(a[i]);
+                }
+                
+                i++;
+        }
+        
+        while(j<lengthB){
+            
+            if(arr.length == 0 || arr[arr.length-1] !== b[j]){
+                    arr.push(b[j]);
+                }
+                
+                j++;
+        }
+        
+        return arr;
+        
     }
 }
